@@ -6,7 +6,7 @@ Stripe Sample.
 Python 3.6 or newer required.
 """
 import os
-from flask import Flask, jsonify, redirect, request
+from flask import Flask, jsonify, redirect, request, send_from_directory
 
 import stripe
 # This is your test secret API key.
@@ -17,6 +17,10 @@ app = Flask(__name__,
             static_folder='public')
 
 YOUR_DOMAIN = 'http://localhost:4242'
+
+@app.route('/.well-known/apple-developer-merchantid-domain-association')
+def apple_pay_verification():
+    return send_from_directory('.well-known', 'apple-developer-merchantid-domain-association')
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
