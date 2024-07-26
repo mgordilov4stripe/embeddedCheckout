@@ -10,7 +10,7 @@ from flask import Flask, jsonify, redirect, request, send_from_directory
 
 import stripe
 # This is your test secret API key.
-stripe.api_key = 'sk_test_51OuCCXK0g9v1y00EpCFyL6nA88JOA37L0oxnThLmebp3o5WyFQQuSRRil4Ljqm05CtaoNEJDyx00GypoEulDYGTY00v2yA1cy8'
+stripe.api_key = os.getenv('STRIPE_KEY')
 
 app = Flask(__name__,
             static_url_path='',
